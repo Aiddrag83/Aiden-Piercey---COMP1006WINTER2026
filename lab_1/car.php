@@ -9,7 +9,6 @@ class Car
     private string $make;
     private string $model;
     private int $year;
-
     /**
      * Car constructor!!
      */
@@ -19,9 +18,8 @@ class Car
         $this->model = $model;
         $this->year  = $year;
     }
-
     /**
-     * Returns formatted car information I believe
+     * Returns formatted car information I believe (If im being honest Im just trying to submit this and get it done)
      */
     public function getCarInfo(): string
     {
