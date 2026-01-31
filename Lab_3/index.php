@@ -1,112 +1,88 @@
-<?php
-$errors = [];
-$successMessage = "";
+<?php require "includes/header.php" ?>
+<main>
+  <h2>🎮 Order Game Items – Fast, Easy & Secure</h2>
 
-/* Sanitize function */
-function cleanInput($data) {
-    return htmlspecialchars(stripslashes(trim($data)));
-}
+  <form action="process.php" method="post" novalidate>
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    <fieldset>
+      <legend>Player Information</legend>
 
-    // Sanitize inputs
-    $firstName = cleanInput($_POST["first_name"] ?? "");
-    $lastName  = cleanInput($_POST["last_name"] ?? "");
-    $email     = cleanInput($_POST["email"] ?? "");
-    $message   = cleanInput($_POST["message"] ?? "");
+      <label for="first_name">First Name</label>
+      <input type="text" id="first_name" name="first_name" required minlength="2">
 
-    /***************************************
-     * Server-side validation??
-     ***************************************/
-    if (empty($firstName)) {
-        $errors[] = "First name is required.";
-    }
+      <label for="last_name">Last Name</label>
+      <input type="text" id="last_name" name="last_name" required minlength="2">
 
-    if (empty($lastName)) {
-        $errors[] = "Last name is required.";
-    }
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone"
+             placeholder="555-123-4567"
+             pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
 
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors[] = "A valid email address is required.";
-    }
+      <label for="address">Shipping Address</label>
+      <input type="text" id="address" name="address" required minlength="5">
 
-    if (empty($message)) {
-        $errors[] = "Message cannot be empty.";
-    }
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required>
+    </fieldset>
 
-    /***************************************
-     * Should send email if no errors!!
-     ***************************************/
-    if (empty($errors)) {
-        $to = "info@bakery.com"; // instructor-friendly placeholder
-        $subject = "New Contact Form Submission";
-        $body = "Name: $firstName $lastName\nEmail: $email\n\nMessage:\n$message";
-        $headers = "From: $email";
+    <fieldset>
+      <legend>Game Items</legend>
 
-        mail($to, $subject, $body, $headers);
+      <p>Select quantities (use 0 if you don’t want an item).</p>
 
-        $successMessage = "Thank you! Your message has been sent successfully.";
-        
-        // Clear form after submission
-        $firstName = $lastName = $email = $message = "";
-    }
-}
-?>
+      <table border="1" cellpadding="8">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Bakery Contact Form</title>
-    <style>
-        body { font-family: Arial, sans-serif; max-width: 600px; margin: auto; }
-        .error { color: red; }
-        .success { color: green; }
-        label { display: block; margin-top: 10px; }
-        input, textarea { width: 100%; padding: 8px; }
-    </style>
-</head>
+          <?php
+          $items = [
+            "kingdom_hearts" => "Kingdom Hearts",
+            "lies_p" => "Lies of P",
+            "secret_mimic" => "Secret of the Mimic",
+            "tears_kingdom" => "Tears of the Kingdom",
+            "gzmo" => "Gizmo's Grand Adventure",
+            "zech_kart" => "Zech Kart"
+          ];
 
-<body>
+          foreach ($items as $key => $label): ?>
+            <tr>
+              <th scope="row"><?= $label ?></th>
+              <td>
+                <label for="<?= $key ?>" class="visually-hidden">
+                  <?= $label ?> quantity
+                </label>
+                <input type="number"
+                       id="<?= $key ?>"
+                       name="items[<?= $key ?>]"
+                       min="0"
+                       max="99"
+                       value="0">
+              </td>
+            </tr>
+          <?php endforeach; ?>
 
-<h1>Contact Our Bakery</h1>
+        </tbody>
+      </table>
+    </fieldset>
 
-<?php
-/***************************************
- * Confirmation or errors
- ***************************************/
-if (!empty($errors)) {
-    echo "<div class='error'><ul>";
-    foreach ($errors as $error) {
-        echo "<li>$error</li>";
-    }
-    echo "</ul></div>";
-}
+    <fieldset>
+      <legend>Additional Notes</legend>
 
-if ($successMessage) {
-    echo "<p class='success'>$successMessage</p>";
-}
-?>
+      <label for="comments">Notes (optional)</label>
+      <textarea id="comments" name="comments" rows="4"
+        placeholder="Character name, server, delivery notes..."></textarea>
+    </fieldset>
 
-<form method="post" action="">
+    <p>
+      <button type="submit">Submit Order</button>
+    </p>
 
-    <label for="first_name">First Name</label>
-    <input type="text" name="first_name" id="first_name" 
-           value="<?= $firstName ?>" required>
+  </form>
+</main>
 
-    <label for="last_name">Last Name</label>
-    <input type="text" name="last_name" id="last_name" 
-           value="<?= $lastName ?>" required>
-
-    <label for="email">Email Address</label>
-    <input type="email" name="email" id="email" 
-           value="<?= $email ?>" required>
-
-    <label for="message">Message</label>
-    <textarea name="message" id="message" rows="5" required><?= $message ?></textarea>
-
-    <button type="submit">Send Message</button>
-</form>
-
-</body>
-</html>
+<?php require "includes/footer.php" ?>
