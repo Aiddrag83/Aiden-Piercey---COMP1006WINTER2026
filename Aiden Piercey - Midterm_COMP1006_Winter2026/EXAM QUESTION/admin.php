@@ -44,3 +44,8 @@ require "includes/connect.php";
     <td><?=htmlspecialchars($review['review'])?></td>
     <td><?=htmlspecialchars($review['created_at'])?></td>
     <td>
+        <a href="edit.php?id=<?=htmlspecialchars($review['id'])?>" class="btn btn-primary">Edit</a>
+        <a href="delete.php?id=<?=htmlspecialchars($review['id'])?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this review?');">Delete</a>
+    </td>
+    </tr>
+    <?php endforeach; ?>
