@@ -36,14 +36,7 @@ require "includes/connect.php";
 </thread>
 <tbody>
     <tr>
-    <td><?=htmlspecialchars($review['id'])?></td>
-    <td><?=htmlspecialchars($review['title'])?></td>
-    <td><?=htmlspecialchars($review['author'])?></td>
-    <td><?=htmlspecialchars($review['rating'])?></td>
-    <td><?=htmlspecialchars($review['review'])?></td>
-    <td><?=htmlspecialchars($review['created_at'])?></td>
-    <td>
-        <a href="edit.php?id=<?=htmlspecialchars($review['id'])?>" class="btn btn-primary">Edit</a>
+           <a href="edit.php?id=<?=htmlspecialchars($review['id'])?>" class="btn btn-primary">Edit</a>
         <a href="delete.php?id=<?=htmlspecialchars($review['id'])?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this review?');">Delete</a>
     </td>
     </tr>
