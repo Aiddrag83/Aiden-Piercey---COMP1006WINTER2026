@@ -11,12 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     die('Invalid request');
 }
 
-$firstName = trim(filter_input(INPUT_POST, 'first_name', FILTER_SANITIZE_SPECIAL_CHARS));
-$lastName  = trim(filter_input(INPUT_POST, 'last_name', FILTER_SANITIZE_SPECIAL_CHARS));
-$email     = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-$phone     = trim(filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_SPECIAL_CHARS));
-$address   = trim(filter_input(INPUT_POST, 'address', FILTER_SANITIZE_SPECIAL_CHARS));
-$comments = trim(filter_input(INPUT_POST, 'comments', FILTER_SANITIZE_SPECIAL_CHARS));
+$book = trim(filter_input(INPUT_POST, 'book_name', FILTER_SANITIZE_SPECIAL_CHARS));
+$author  = trim(filter_input(INPUT_POST, 'author', FILTER_SANITIZE_SPECIAL_CHARS));
+$rating     = filter_input(INPUT_POST, 'rating', FILTER_VALIDATE_INT);
+$feedback     = trim(filter_input(INPUT_POST, 'feedback', FILTER_SANITIZE_SPECIAL_CHARS));
 
 /* At minimum:
 
@@ -24,3 +22,18 @@ $comments = trim(filter_input(INPUT_POST, 'comments', FILTER_SANITIZE_SPECIAL_CH
 - Numeric fields must contain valid numbers
 - Data must be sanitized before storing
 - Invalid data must not be inserted into the database */
+
+//send to the database if valid, otherwise show errors//
+
+if ($book === null || $book === '') {
+    die('Book Title is required.');
+}
+if ($author === null || $author === '') {
+    die('Author Name is required.');
+}
+if ($rating === null || $rating === '') {
+    die('A rating is required.');
+}
+if ($feedback === null || $feedback === '') {
+    die('Feedback is required.');
+}
