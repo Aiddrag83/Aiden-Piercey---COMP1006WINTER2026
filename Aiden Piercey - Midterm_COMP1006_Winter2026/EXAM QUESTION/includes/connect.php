@@ -18,3 +18,7 @@ catch(PDOException $e) {
 }
 //need to go from process.php into database//
 
+$sql = "SELECT * FROM reviews";
+$stmt = $pdo->prepare($sql);
+$stmt->execute();
+$reviews = $stmt->fetchall(PDO::FETCH_ASSOC);
