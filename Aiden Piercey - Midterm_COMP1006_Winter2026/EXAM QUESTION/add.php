@@ -41,3 +41,6 @@ if (!empty($errors)) {
     ]);
     echo "<div class='alert alert-success'>Review added successfully!</div>";
 }
+include("../includes/footer.php");
+include ("../config/database.php");
+include("../includes/header.php");
