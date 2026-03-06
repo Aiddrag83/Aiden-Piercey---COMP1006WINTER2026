@@ -10,7 +10,7 @@
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     die('Invalid request');
 }
-
+$ID = trim(filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT));
 $title = trim(filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS));
 $author  = trim(filter_input(INPUT_POST, 'author', FILTER_SANITIZE_SPECIAL_CHARS));
 $rating     = filter_input(INPUT_POST, 'rating', FILTER_VALIDATE_INT);
@@ -24,7 +24,9 @@ $rating     = filter_input(INPUT_POST, 'rating', FILTER_VALIDATE_INT);
 - Invalid data must not be inserted into the database */
 
 //send to the database if valid, otherwise show errors//
-
+if ($ID === null || $ID === false) {
+    die('Invalid ID.');
+}
 if ($title === null || $title === '') {
     die('Title is required.');
 }
