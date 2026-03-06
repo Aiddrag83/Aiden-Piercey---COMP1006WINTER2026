@@ -49,3 +49,7 @@ require "includes/connect.php";
     </td>
     </tr>
     <?php endforeach; ?>
+</tbody>
+</table>
+</main>
+<?php require "includes/footer.php"; ?>
