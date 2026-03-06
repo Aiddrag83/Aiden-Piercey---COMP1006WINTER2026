@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $title = trim(filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS));
 $author  = trim(filter_input(INPUT_POST, 'author', FILTER_SANITIZE_SPECIAL_CHARS));
 $rating     = filter_input(INPUT_POST, 'rating', FILTER_VALIDATE_INT);
-$review     = trim(filter_input(INPUT_POST, 'freview', FILTER_SANITIZE_SPECIAL_CHARS));
+$review     = trim(filter_input(INPUT_POST, 'review', FILTER_SANITIZE_SPECIAL_CHARS));
 
 /* At minimum:
 
