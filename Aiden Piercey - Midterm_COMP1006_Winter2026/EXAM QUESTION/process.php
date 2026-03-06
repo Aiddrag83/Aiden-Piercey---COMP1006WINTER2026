@@ -38,5 +38,7 @@ if ($rating === null || $rating === '') {
 echo "Title: " . htmlspecialchars($title) . "<br>";
 echo "Author: " . htmlspecialchars($author) . "<br>";  
 echo "Rating: " . htmlspecialchars($rating) . "<br>";
-
+echo "Review: " . htmlspecialchars($review) . "<br>";
+echo "Created at: " . htmlspecialchars($created_at) . "<br>";
+echo "Updated at: " . htmlspecialchars($updated_at) . "<br>";
 die('Form processed successfully. Data is valid and sanitized.');
