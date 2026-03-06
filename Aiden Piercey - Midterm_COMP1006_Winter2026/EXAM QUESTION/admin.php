@@ -48,7 +48,6 @@ require "includes/connect.php";
         <a href="delete.php?id=<?=htmlspecialchars($review['id'])?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this review?');">Delete</a>
     </td>
     </tr>
-    <?php endforeach; ?>
 </tbody>
 </table>
 </main>

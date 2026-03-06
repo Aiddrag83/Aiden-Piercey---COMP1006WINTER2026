@@ -17,3 +17,10 @@ $email     = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
 $phone     = trim(filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_SPECIAL_CHARS));
 $address   = trim(filter_input(INPUT_POST, 'address', FILTER_SANITIZE_SPECIAL_CHARS));
 $comments = trim(filter_input(INPUT_POST, 'comments', FILTER_SANITIZE_SPECIAL_CHARS));
+
+/* At minimum:
+
+- Required fields must not be empty
+- Numeric fields must contain valid numbers
+- Data must be sanitized before storing
+- Invalid data must not be inserted into the database */
