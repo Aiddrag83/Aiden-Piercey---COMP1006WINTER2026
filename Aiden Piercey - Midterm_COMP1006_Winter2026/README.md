@@ -32,7 +32,7 @@ Fields:
 - `rating`
 - `review_text`
 - `created_at`
-
+DONE
 You must connect to the database using PDO.
 
 ---
@@ -47,7 +47,7 @@ Using the provided HTML form:
 - Sanitize and validate the form data on the server
 - If valid, store the review in the database
 - If invalid, display an error message and do not insert the record
-
+DONE
 ---
 
 ### 2. Admin Page (Read) (5 marks) 
@@ -57,7 +57,7 @@ Create an admin page that:
 - Retrieves all book reviews from the database
 - Displays them in a dynamically generated HTML table
 - Includes Update and Delete options for each review
-
+DONE
 ---
 
 ### 3. Update (5 marks) 
@@ -68,7 +68,7 @@ The admin must be able to:
 - Load the existing data into a form
 - Edit the values
 - Save the changes to the database
-
+DONE
 ---
 
 ### 4. Delete (5 marks) 
