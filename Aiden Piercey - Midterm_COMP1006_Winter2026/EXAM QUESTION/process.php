@@ -34,3 +34,8 @@ if ($author === null || $author === '') {
 if ($rating === null || $rating === '') {
     die('A rating is required.');
 }
+
+echo "Title: " . htmlspecialchars($title) . "<br>";
+echo "Author: " . htmlspecialchars($author) . "<br>";  
+echo "Rating: " . htmlspecialchars($rating) . "<br>";
+echo "Review: " . htmlspecialchars($review) . "<br>";

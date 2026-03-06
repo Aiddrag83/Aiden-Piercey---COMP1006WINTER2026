@@ -16,3 +16,5 @@ try {
 catch(PDOException $e) {
     die("Database connection failed: " . $e->getMessage()); 
 }
+//need to go from process.php into database//
+
