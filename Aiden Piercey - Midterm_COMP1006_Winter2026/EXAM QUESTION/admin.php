@@ -35,7 +35,6 @@ require "includes/connect.php";
 </tr>
 </thread>
 <tbody>
-    <?php foreach ($reviews as $review); ?>
     <tr>
     <td><?=htmlspecialchars($review['id'])?></td>
     <td><?=htmlspecialchars($review['title'])?></td>
