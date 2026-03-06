@@ -1,6 +1,4 @@
 <?php
-include("../config/database.php");
-include("../includes/header.php");
 
 $errors = [];
 
