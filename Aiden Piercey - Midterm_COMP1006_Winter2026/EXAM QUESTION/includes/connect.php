@@ -22,8 +22,5 @@ $sql = "SELECT * FROM reviews";
 $stmt = $pdo->prepare($sql);
 $stmt->execute();
 $reviews = $stmt->fetchall(PDO::FETCH_ASSOC);
-$title = $reviews[0]['title'];
-$author = $reviews[0]['author'];
-$rating = $reviews[0]['rating'];
 $pdo = null;
 
