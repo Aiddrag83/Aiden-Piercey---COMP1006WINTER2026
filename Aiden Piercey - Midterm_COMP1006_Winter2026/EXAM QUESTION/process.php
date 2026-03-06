@@ -1,6 +1,8 @@
 <?php
-include("../config/database.php");
-include("../includes/header.php");
+include "includes/header.php";
+include "includes/connect.php";
+include "config/database.php";
+include "includes/footer.php";
 /* Using the provided HTML form:
 - Accept user input
 - Sanitize and validate the form data on the server
