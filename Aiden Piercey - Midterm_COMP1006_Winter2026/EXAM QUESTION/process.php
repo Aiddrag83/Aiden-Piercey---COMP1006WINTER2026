@@ -1,46 +1,51 @@
 <?php
-include "includes/header.php";
-include "includes/connect.php";
-include "config/database.php";
-include "includes/footer.php";
-/* Using the provided HTML form:
-- Accept user input
-- Sanitize and validate the form data on the server
-- If valid, store the review in the database
-- If invalid, display an error message and do not insert the record
-*/ 
+include("../config/database.php");
+include("../includes/header.php");
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    die('Invalid request');
+$errors = [];
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    // Sanitize input
+    $title = trim($_POST['title']);
+    $author = trim($_POST['author']);
+    $rating = trim($_POST['rating']);
+    $review = trim($_POST['review']);
+
+    // Server-side validation
+    if (empty($title)) $errors[] = "Title required.";
+    if (empty($author)) $errors[] = "Author required.";
+    if (empty($rating)) $errors[] = "Rating required.";
+    if (empty($review)) $errors[] = "Review required.";
+
+    if (empty($errors)) {
+
+        $stmt = $conn->prepare("INSERT INTO reviews 
+        (title, author, rating, review)
+        VALUES (?, ?, ?, ?)");
+
+        $stmt->bind_param("ssss",
+            $title,
+            $author,
+            $rating,
+            $review
+        );
+
+        $stmt->execute();
+
+        echo "<div class='alert alert-success'>Review added successfully!</div>";
+    }
 }
-$ID = trim(filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT));
-$title = trim(filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS));
-$author  = trim(filter_input(INPUT_POST, 'author', FILTER_SANITIZE_SPECIAL_CHARS));
-$rating     = filter_input(INPUT_POST, 'rating', FILTER_VALIDATE_INT);
+?>
 
+<h2>Add Review</h2>
 
-/* At minimum:
-
-- Required fields must not be empty
-- Numeric fields must contain valid numbers
-- Data must be sanitized before storing
-- Invalid data must not be inserted into the database */
-
-//send to the database if valid, otherwise show errors//
-if ($ID === null || $ID === false) {
-    die('Invalid ID.');
+<?php
+if (!empty($errors)) {
+    echo "<div class='alert alert-danger'>";
+    foreach ($errors as $error) {
+        echo "<p>$error</p>";
+    }
+    echo "</div>";
 }
-if ($title === null || $title === '') {
-    die('Title is required.');
-}
-if ($author === null || $author === '') {
-    die('Author Name is required.');
-}
-if ($rating === null || $rating === '') {
-    die('A rating is required.');
-}
-
-echo "Title: " . htmlspecialchars($title) . "<br>";
-echo "Author: " . htmlspecialchars($author) . "<br>";  
-echo "Rating: " . htmlspecialchars($rating) . "<br>";
-die('Form processed successfully. Data is valid and sanitized.');
+?>
