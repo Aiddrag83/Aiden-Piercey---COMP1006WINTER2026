@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     die('Invalid request');
 }
 
-$book = trim(filter_input(INPUT_POST, 'book_name', FILTER_SANITIZE_SPECIAL_CHARS));
+$book = trim(filter_input(INPUT_POST, 'book', FILTER_SANITIZE_SPECIAL_CHARS));
 $author  = trim(filter_input(INPUT_POST, 'author', FILTER_SANITIZE_SPECIAL_CHARS));
 $rating     = filter_input(INPUT_POST, 'rating', FILTER_VALIDATE_INT);
 $feedback     = trim(filter_input(INPUT_POST, 'feedback', FILTER_SANITIZE_SPECIAL_CHARS));
