@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = trim($_POST['title']);
     $author = trim($_POST['author']);
     $rating = trim($_POST['rating']);
-    $review = trim($_POST['review']);
+
 
     // Server-side validation
     if (empty($title)) $errors[] = "Title required.";
