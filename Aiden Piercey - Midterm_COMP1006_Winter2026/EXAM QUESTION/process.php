@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     die('Invalid request');
 }
 
-$book_title = trim(filter_input(INPUT_POST, 'book_title', FILTER_SANITIZE_SPECIAL_CHARS));
+$title = trim(filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS));
 $author  = trim(filter_input(INPUT_POST, 'author', FILTER_SANITIZE_SPECIAL_CHARS));
 $rating     = filter_input(INPUT_POST, 'rating', FILTER_VALIDATE_INT);
 $feedback     = trim(filter_input(INPUT_POST, 'feedback', FILTER_SANITIZE_SPECIAL_CHARS));
@@ -25,8 +25,8 @@ $feedback     = trim(filter_input(INPUT_POST, 'feedback', FILTER_SANITIZE_SPECIA
 
 //send to the database if valid, otherwise show errors//
 
-if ($book_title === null || $book_title === '') {
-    die('Book Title is required.');
+if ($title === null || $title === '') {
+    die('Title is required.');
 }
 if ($author === null || $author === '') {
     die('Author Name is required.');
