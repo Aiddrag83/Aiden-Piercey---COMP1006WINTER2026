@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $title = trim(filter_input(INPUT_POST, 'title', FILTER_SANITIZE_SPECIAL_CHARS));
 $author  = trim(filter_input(INPUT_POST, 'author', FILTER_SANITIZE_SPECIAL_CHARS));
 $rating     = filter_input(INPUT_POST, 'rating', FILTER_VALIDATE_INT);
-$feedback     = trim(filter_input(INPUT_POST, 'feedback', FILTER_SANITIZE_SPECIAL_CHARS));
+$review     = trim(filter_input(INPUT_POST, 'freview', FILTER_SANITIZE_SPECIAL_CHARS));
 
 /* At minimum:
 
@@ -34,6 +34,6 @@ if ($author === null || $author === '') {
 if ($rating === null || $rating === '') {
     die('A rating is required.');
 }
-if ($feedback === null || $feedback === '') {
-    die('Feedback is required.');
+if ($review === null || $review === '') {
+    die('A review is required.');
 }
