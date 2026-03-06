@@ -34,6 +34,6 @@ if ($author === null || $author === '') {
 if ($rating === null || $rating === '') {
     die('A rating is required.');
 }
-if ($rating < 1 || $rating > 5) {
-    die('Rating must be between 1 and 5.');
+if ($review === null || $review === '') {
+    die('A review is required.');
 }
