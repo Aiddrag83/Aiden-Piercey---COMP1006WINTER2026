@@ -4,7 +4,7 @@
 $host = "localhost";
 $username = "root";
 $password = "";
-$database = "resume_builder";
+$database = "resume_builder_live";
 
 // Create a connection
 $conn = new mysqli($host, $username, $password, $database);
