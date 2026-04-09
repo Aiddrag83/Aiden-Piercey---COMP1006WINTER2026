@@ -1,50 +1,27 @@
 <?php
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
+require_once 'auth.php';
 ?>
-<?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="#">Course Project</a>
+        <div class="ms-auto">
+            <span class="me-3">Hello, <?= htmlspecialchars($_SESSION['username']) ?></span>
+            <a href="logout.php" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
+</nav>
 
-include("../config/database.php");
-include("../includes/header.php");
-
-$result = $conn->query("SELECT * FROM resumes ORDER BY created_at DESC");
-?>
-
-<h2>All Resumes</h2>
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-
-<?php while($row = $result->fetch_assoc()) { ?>
-
-<tr>
-    <td><?php echo $row['first_name'] . " " . $row['last_name']; ?></td>
-    <td><?php echo $row['current_position']; ?></td>
-    <td><?php echo $row['email']; ?></td>
-    <td><?php echo $row['phone']; ?></td>
-    <td>
-        <a href="edit.php?id=<?php echo $row['id']; ?>" class="btn btn-warning btn-sm">Edit</a>
-        <a href="delete.php?id=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm">Delete</a>
-    </td>
-</tr>
-
-<?php } ?>
-
-    </tbody>
-</table>
-
-<?php include("../includes/footer.php"); ?>
+<div class="container mt-5">
+    <h1>Welcome to your dashboard!</h1>
+    <p>This page is now protected — only logged-in users can see this.</p>
+</div>
+</body>
+</html>
